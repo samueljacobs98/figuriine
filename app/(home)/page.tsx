@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Home = () => {
   return (
-    <>
+    <div className="flex flex-grow flex-col items-center justify-center lg:justify-items-center p-12 md:px-24 lg:pt-32 lg:grid md:grid-cols-2">
       <div className="container flex flex-col gap-4 md:gap-8 lg:gap-12 w-fit">
         <HeroText />
         <div className="flex gap-2 justify-between items-center border-y-2 py-2 border-y-bg-lego-sand uppercase">
@@ -36,7 +36,7 @@ const Home = () => {
           src={src}
         />
       </div>
-    </>
+    </div>
   );
 };
 
