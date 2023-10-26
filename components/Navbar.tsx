@@ -1,15 +1,22 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const pages = [
+  { name: "Home", href: "/" },
+  { name: "Build", href: "/build" },
+];
 
 type NavItemProps = {
   href: string;
+  isCurrent: boolean;
   children?: React.ReactNode;
 };
 
-const NavItem = ({ href, children }: NavItemProps) => {
+const NavItem = ({ href, isCurrent, children }: NavItemProps) => {
   return (
-    <li className="hover:text-slate-700">
-      <Link href={`/${href}`}>
+    <li className={`hover:text-slate-700 ${isCurrent && "font-bold"}`}>
+      <Link href={href}>
         <p className="capitalize">{children ? children : href}</p>
       </Link>
     </li>
@@ -17,6 +24,8 @@ const NavItem = ({ href, children }: NavItemProps) => {
 };
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   return (
     <nav
       className="text-slate-200 w-full bg-lego-red shadow-xl p-6"
@@ -27,8 +36,11 @@ const Navbar = () => {
           <span className="font-bold cursor-pointer">FIGURiiNE</span>
         </Link>
         <ul className="flex flex-row justify-end items-center gap-x-6 font-medium">
-          <NavItem href="">Home</NavItem>
-          <NavItem href="build" />
+          {pages.map(({ name, href }) => (
+            <NavItem href={href} isCurrent={pathname == href} key={name}>
+              {name}
+            </NavItem>
+          ))}
         </ul>
       </div>
     </nav>
