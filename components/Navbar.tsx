@@ -4,12 +4,19 @@ import { useAuth, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 
 const pages = [
-  { name: "Home", href: "/" },
-  { name: "Build", href: "/build" },
+  { name: "Home", href: { pathname: "/" } },
+  { name: "Build", href: { pathname: "/build" } },
 ];
 
+type href = {
+  pathname: string;
+  query?: {
+    [key: string]: string;
+  };
+};
+
 type NavItemProps = {
-  href: string;
+  href: href;
   isCurrent: boolean;
   children?: React.ReactNode;
 };
@@ -18,7 +25,7 @@ const NavItem = ({ href, isCurrent, children }: NavItemProps) => {
   return (
     <li className={`hover:text-slate-700 ${isCurrent && "font-bold"}`}>
       <Link href={href}>
-        <p className="capitalize">{children ? children : href}</p>
+        <p className="capitalize">{children ? children : href.pathname}</p>
       </Link>
     </li>
   );
@@ -35,7 +42,10 @@ const User = ({ isSignedIn, isCurrent }: UserProps) => {
       <UserButton afterSignOutUrl="/" />
     </li>
   ) : (
-    <NavItem href="/sign-in" isCurrent={isCurrent}>
+    <NavItem
+      href={{ pathname: "/sign-in", query: { direct: "true" } }}
+      isCurrent={isCurrent}
+    >
       Sign In
     </NavItem>
   );
@@ -56,7 +66,11 @@ const Navbar = () => {
         </Link>
         <ul className="flex flex-row justify-end items-center gap-x-6 font-medium">
           {pages.map(({ name, href }) => (
-            <NavItem href={href} isCurrent={pathname == href} key={name}>
+            <NavItem
+              href={href}
+              isCurrent={pathname == href.pathname}
+              key={name}
+            >
               {name}
             </NavItem>
           ))}
