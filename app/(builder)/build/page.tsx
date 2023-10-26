@@ -1,5 +1,7 @@
+import Renderer from "@/components/Renderer";
+
 const Build = () => {
-  return <div>Build</div>;
+  return <Renderer />;
 };
 
 export default Build;

@@ -18,9 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.className} flex flex-col min-h-screen`}>
         <Navbar />
-        <main className="flex flex-grow flex-col items-center justify-center lg:justify-items-center p-12 md:px-24 lg:pt-32 lg:grid md:grid-cols-2">
-          {children}
-        </main>
+        <main className="h-full">{children}</main>
         <Footer />
       </body>
     </html>
