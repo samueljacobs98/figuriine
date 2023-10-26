@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useAuth, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 
 const pages = [
@@ -23,15 +24,33 @@ const NavItem = ({ href, isCurrent, children }: NavItemProps) => {
   );
 };
 
+type UserProps = {
+  isSignedIn: boolean;
+  isCurrent: boolean;
+};
+
+const User = ({ isSignedIn, isCurrent }: UserProps) => {
+  return isSignedIn ? (
+    <li>
+      <UserButton afterSignOutUrl="/" />
+    </li>
+  ) : (
+    <NavItem href="/sign-in" isCurrent={isCurrent}>
+      Sign In
+    </NavItem>
+  );
+};
+
 const Navbar = () => {
   const pathname = usePathname();
+  const { isSignedIn } = useAuth() as { isSignedIn: boolean };
 
   return (
     <nav
       className="text-slate-200 w-full bg-lego-red shadow-xl p-6"
       role="navigation"
     >
-      <div className="container mx-auto px-8 md:px-16 flex items-center justify-between gap-4">
+      <div className="container mx-auto px-4 sm:px-8 md:px-16 flex items-center justify-between gap-4">
         <Link href="/" className="text-center md:text-left">
           <span className="font-bold cursor-pointer">FIGURiiNE</span>
         </Link>
@@ -41,6 +60,7 @@ const Navbar = () => {
               {name}
             </NavItem>
           ))}
+          <User isSignedIn={isSignedIn} isCurrent={pathname == "/sign-in"} />
         </ul>
       </div>
     </nav>
