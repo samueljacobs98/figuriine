@@ -2,11 +2,7 @@
 import Renderer from "@/components/Renderer";
 
 const Build = () => {
-  return (
-    <>
-      <Renderer />;
-    </>
-  );
+  return <Renderer />;
 };
 
 export default Build;
