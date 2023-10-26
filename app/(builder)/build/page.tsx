@@ -1,4 +1,3 @@
-"use client";
 import Renderer from "@/components/Renderer";
 
 const Build = () => {
