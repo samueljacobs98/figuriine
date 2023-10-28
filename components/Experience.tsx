@@ -1,4 +1,6 @@
 import { folder, useControls } from "leva";
+import { Suspense } from "react";
+import Placeholder from "./Placeholder";
 import FigureModel from "./Figure/Figure";
 
 const Experience = () => {
@@ -22,7 +24,9 @@ const Experience = () => {
       />
       <ambientLight intensity={0.5} />
 
-      <FigureModel />
+      <Suspense fallback={<Placeholder position-y={0.5} scale={[2, 3, 2]} />}>
+        <FigureModel />
+      </Suspense>
       <mesh
         receiveShadow
         position-y={-0.9}
