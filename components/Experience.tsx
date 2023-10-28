@@ -1,51 +1,40 @@
-import { useControls } from "leva";
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-import * as THREE from "three";
-import { log } from "console";
+import { folder, useControls } from "leva";
+import { Suspense } from "react";
+import Placeholder from "./Placeholder";
+import FigureModel from "./Figure/Figure";
 
 const Experience = () => {
-  const boxRef = useRef<THREE.Mesh | null>(null);
-
-  useFrame(({ clock }) => {
-    const a = clock.getElapsedTime();
-
-    if (boxRef.current) {
-      boxRef.current.rotation.y = Math.sin(a) * a * 0.005;
-    }
-  });
-
-  const { boxColour, position } = useControls({
-    boxColour: "#ff0000",
-    position: {
-      value: { x: 0, y: 0, z: 0 },
-      step: 0.1,
-    },
+  const { position } = useControls({
+    Light: folder({
+      position: {
+        value: { x: -1.2, y: 3.8, z: 2.9 },
+        step: 0.1,
+      },
+    }),
   });
 
   return (
     <>
-      <directionalLight castShadow position={[1, 2, 3]} intensity={1.5} />
+      <directionalLight
+        castShadow
+        position={[position.x, position.y, position.z]}
+        intensity={1.5}
+        shadow-normalBias={0.027}
+        shadow-bias={-0.004}
+      />
       <ambientLight intensity={0.5} />
 
-      <mesh
-        ref={boxRef}
-        castShadow
-        scale={1.5}
-        position={[position.x, position.y, position.z]}
-      >
-        <boxGeometry />
-        <meshStandardMaterial color={boxColour} />
-      </mesh>
-
+      <Suspense fallback={<Placeholder position-y={0.5} scale={[2, 3, 2]} />}>
+        <FigureModel />
+      </Suspense>
       <mesh
         receiveShadow
-        position-y={-1}
+        position-y={-0.9}
         rotation-x={-Math.PI * 0.5}
-        scale={100}
+        scale={30}
       >
         <planeGeometry />
-        <meshStandardMaterial color="black" />
+        <meshStandardMaterial color="#004a00" />
       </mesh>
     </>
   );
