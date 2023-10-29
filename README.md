@@ -9,11 +9,12 @@
 - **User Authentication**: Securely sign in to access customisation features.
 - **3D Customisation**: Personalise your LEGO figure figure in an interactive 3D space.
 - **Responsive Design**: Built with modern web standards for a seamless experience on any device.
+- **Vercel Build Pipeline**: Deployed on Vercel with a CI/CD pipeline.
 
 ## Upcoming Features/TODOs
 
 - **Unit & Integration Tests**: Incorporate Jest and React-testing-library to ensure robustness and reliability.
-- **GitHub CI/CD Pipelines**: Implement GitHub actions to run tests and builds. PRs should pass these checks before being merged.
+- **GitHub CI/CD Pipelines**: Implement GitHub actions to run tests. PRs should pass these checks before being merged.
 - **Save and Retrieve Designs**: Allow users to save and retrieve their customsied figure designs. Planning to use a NoSQL database such as MongoDB to save design configurations.
 - **Generative AI Integration**: Use Generative AI to:
   - Generate a personality for the figure based on the customisations made.
