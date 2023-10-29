@@ -4,20 +4,22 @@ import Placeholder from "./Placeholder";
 import FigureModel from "./Figure/Figure";
 
 const Experience = () => {
-  const { position } = useControls({
-    Light: folder({
-      position: {
-        value: { x: -1.2, y: 3.8, z: 2.9 },
-        step: 0.1,
-      },
-    }),
-  });
+  const defaultPosition = { x: -1.2, y: 3.8, z: 2.9 };
+
+  // const { position } = useControls({
+  //   Light: folder({
+  //     position: {
+  //       value: defaultPosition,
+  //       step: 0.1,
+  //     },
+  //   }),
+  // });
 
   return (
     <>
       <directionalLight
         castShadow
-        position={[position.x, position.y, position.z]}
+        position={[defaultPosition.x, defaultPosition.y, defaultPosition.z]}
         intensity={1.5}
         shadow-normalBias={0.027}
         shadow-bias={-0.004}
