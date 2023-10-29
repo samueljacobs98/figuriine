@@ -4,6 +4,8 @@
 
 **FIGURiiNE** is a web application built with React, TypeScript, Next.js, Three.js, and React Three Fiber. Leva has been used for the controls and Clerk Authentication for user authentication. With FIGURiiNE, users can sign in and customise their own 3D Lego figures.
 
+[Deployed Site](https://figuriine.vercel.app/)
+
 ## Features
 
 - **User Authentication**: Securely sign in to access customisation features.
