@@ -13,7 +13,7 @@ const FigureModel = () => {
     groupRotation,
     groupPosition,
   } = useControls({
-    modifiables: folder({
+    Customise: folder({
       headColor: "#F7C602",
       torsoColor: "#0224f7",
       armColor: "#0224f7",
