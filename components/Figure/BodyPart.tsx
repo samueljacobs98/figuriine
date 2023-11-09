@@ -1,30 +1,28 @@
-import * as THREE from "three";
+import BodyPartData from "./BodyPartData";
 
 type BodyPartProps = {
-  name: string;
-  scale: number;
-  color: string;
-  geometry: THREE.BufferGeometry;
-  rotation: { x: number; y: number; z: number };
-  position: { x: number; y: number; z: number };
+  data: BodyPartData;
+  scale?: number;
 };
 
-const BodyPart = ({
-  scale,
-  color,
-  geometry,
-  rotation,
-  position,
-}: BodyPartProps) => {
+const BodyPart = ({ data }: BodyPartProps) => {
   return (
     <mesh
       castShadow
-      geometry={geometry}
-      rotation={[rotation.x, rotation.y, rotation.z]}
-      position={[position.x, position.y, position.z]}
-      scale={scale}
+      geometry={data.geometry}
+      rotation={[
+        data.offsetRotation.x,
+        data.offsetRotation.y,
+        data.offsetRotation.z,
+      ]}
+      position={[
+        data.offsetPosition.x,
+        data.offsetPosition.y,
+        data.offsetPosition.z,
+      ]}
+      scale={data.scale}
     >
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial color={data.color} />
     </mesh>
   );
 };

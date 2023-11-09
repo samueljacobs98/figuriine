@@ -1,19 +1,9 @@
-import { folder, useControls } from "leva";
 import { Suspense } from "react";
 import Placeholder from "./Placeholder";
-import FigureModel from "./Figure/Figure";
+import Minifigure from "./Figure/Minifigure";
 
 const Experience = () => {
   const defaultPosition = { x: -1.2, y: 3.8, z: 2.9 };
-
-  // const { position } = useControls({
-  //   Light: folder({
-  //     position: {
-  //       value: defaultPosition,
-  //       step: 0.1,
-  //     },
-  //   }),
-  // });
 
   return (
     <>
@@ -27,7 +17,7 @@ const Experience = () => {
       <ambientLight intensity={0.5} />
 
       <Suspense fallback={<Placeholder position-y={0.5} scale={[2, 3, 2]} />}>
-        <FigureModel />
+        <Minifigure />
       </Suspense>
       <mesh
         receiveShadow
