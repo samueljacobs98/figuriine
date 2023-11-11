@@ -1,7 +1,6 @@
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import BodyPartData from "./BodyPartData";
-import BodyPart from "./BodyPart";
+import BodyPartFactory from "./BodyPart";
 import { useControls, folder } from "leva";
 
 type GLTFResult = GLTF & {
@@ -19,8 +18,6 @@ type GLTFResult = GLTF & {
 };
 
 const Minifigure = () => {
-  const { nodes } = useGLTF("/minifigure.draco.glb", true) as GLTFResult;
-
   const {
     headColor,
     torsoColor,
@@ -51,7 +48,9 @@ const Minifigure = () => {
     }),
   });
 
-  const waist = new BodyPartData(
+  const { nodes } = useGLTF("/minifigure.draco.glb", true) as GLTFResult;
+
+  const waist = new BodyPartFactory(
     "Waist",
     nodes.WaistModel.geometry,
     legsColor,
@@ -59,25 +58,25 @@ const Minifigure = () => {
     { x: 0, y: 0, z: 0 }
   );
 
-  const leftLeg = new BodyPartData(
+  const leftLeg = new BodyPartFactory(
     "Left Leg",
     nodes.LeftLegModel.geometry,
     legsColor
   );
 
-  const rightLeg = new BodyPartData(
+  const rightLeg = new BodyPartFactory(
     "Right Leg",
     nodes.RightLegModel.geometry,
     legsColor
   );
 
-  const torso = new BodyPartData(
+  const torso = new BodyPartFactory(
     "Torso",
     nodes.TorsoModel.geometry,
     torsoColor
   );
 
-  const leftArm = new BodyPartData(
+  const leftArm = new BodyPartFactory(
     "Left Arm",
     nodes.LeftArmModel.geometry,
     armColor,
@@ -85,7 +84,7 @@ const Minifigure = () => {
     { x: 0, y: 0.2, z: 0 }
   );
 
-  const rightArm = new BodyPartData(
+  const rightArm = new BodyPartFactory(
     "Right Arm",
     nodes.RightArmModel.geometry,
     armColor,
@@ -93,7 +92,7 @@ const Minifigure = () => {
     { x: 0, y: -0.2, z: 0 }
   );
 
-  const leftHand = new BodyPartData(
+  const leftHand = new BodyPartFactory(
     "Left Hand",
     nodes.LeftHandModel.geometry,
     handColor,
@@ -101,7 +100,7 @@ const Minifigure = () => {
     { x: -0.8, y: 0, z: 0.1 }
   );
 
-  const rightHand = new BodyPartData(
+  const rightHand = new BodyPartFactory(
     "Right Hand",
     nodes.RightHandModel.geometry,
     handColor,
@@ -109,7 +108,7 @@ const Minifigure = () => {
     { x: -0.8, y: 0, z: -0.1 }
   );
 
-  const head = new BodyPartData(
+  const head = new BodyPartFactory(
     "Head",
     nodes.HeadModel.geometry,
     headColor,
@@ -124,20 +123,20 @@ const Minifigure = () => {
       rotation={[groupRotation.x, groupRotation.y, groupRotation.z]}
     >
       {/* Head */}
-      <BodyPart data={head} />
+      {head.render()}
       {/* Upper Body */}
       <group position={[0, 54, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-        <BodyPart data={torso} />
-        <BodyPart data={leftArm} />
-        <BodyPart data={rightArm} />
-        <BodyPart data={leftHand} />
-        <BodyPart data={rightHand} />
+        {torso.render()}
+        {leftArm.render()}
+        {rightArm.render()}
+        {leftHand.render()}
+        {rightHand.render()}
       </group>
       {/* Lower Body */}
       <group position={[0, 10, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-        <BodyPart data={waist} />
-        <BodyPart data={leftLeg} />
-        <BodyPart data={rightLeg} />
+        {waist.render()}
+        {leftLeg.render()}
+        {rightLeg.render()}
       </group>
     </group>
   );
