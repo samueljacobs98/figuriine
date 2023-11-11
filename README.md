@@ -11,6 +11,7 @@
 - **User Authentication**: Securely sign in to access customisation features.
 - **3D Customisation**: Personalise your LEGO figure figure in an interactive 3D space.
 - **Responsive Design**: Built with modern web standards for a seamless experience on any device.
+- **Performance**: Optimised for performance using DRACO compressed models.
 - **Vercel Build Pipeline**: Deployed on Vercel with a CI/CD pipeline.
 
 ## Upcoming Features/TODOs
