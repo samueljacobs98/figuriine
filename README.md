@@ -23,6 +23,7 @@
   - Generate a personality for the figure based on the customisations made.
   - Generate a figure based on a description provided by the user.
 - **Performance Improvements**: Consider the user of Matcaps over light-responsive meshes. Use r3f-perf for performance monitoring.
+- **Error Handling**: Implement error handling for failed API calls and other errors.
 
 ## Getting Started
 

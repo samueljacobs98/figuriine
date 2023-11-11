@@ -7,27 +7,6 @@ interface BodyPartData {
   scale: number;
 }
 
-class BodyPartFactory implements BodyPartData {
-  constructor(
-    public name: string,
-    public geometry: THREE.BufferGeometry,
-    public color: string,
-    public offsetPosition: { x: number; y: number; z: number } = {
-      x: 0,
-      y: 0,
-      z: 0,
-    },
-    public offsetRotation: { x: number; y: number; z: number } = {
-      x: 0,
-      y: 0,
-      z: 0,
-    },
-    public scale: number = 1
-  ) {}
-
-  render = () => <BodyPart data={this} />;
-}
-
 type BodyPartProps = {
   data: BodyPartData;
   scale?: number;
@@ -54,5 +33,26 @@ const BodyPart = ({ data }: BodyPartProps) => {
     </mesh>
   );
 };
+
+class BodyPartFactory implements BodyPartData {
+  constructor(
+    public name: string,
+    public geometry: THREE.BufferGeometry,
+    public color: string,
+    public offsetPosition: { x: number; y: number; z: number } = {
+      x: 0,
+      y: 0,
+      z: 0,
+    },
+    public offsetRotation: { x: number; y: number; z: number } = {
+      x: 0,
+      y: 0,
+      z: 0,
+    },
+    public scale: number = 1
+  ) {}
+
+  render = () => <BodyPart data={this} />;
+}
 
 export default BodyPartFactory;

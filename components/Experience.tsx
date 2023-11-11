@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Placeholder from "./Placeholder";
-import Minifigure from "./Figure/Minifigure";
+import Minifigure from "./Minifigure/Minifigure";
 
 const Experience = () => {
   const defaultPosition = { x: -1.2, y: 3.8, z: 2.9 };
